@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @PostMapping
-    public AppUser createUser(@RequestBody AppUser user) {
+    public AppUser createUser(@RequestBody AppUser user) throws Exception {
         AppUser res = userService.createUser(user);
         return res;
     }

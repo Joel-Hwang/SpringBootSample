@@ -21,7 +21,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public AppUser createUser(AppUser user) {
+    public AppUser createUser(AppUser user) throws Exception{
+        if("".equals(user.getUsername()) ) throw new Exception("user name is empty");
         return userRepository.save(user);
     }
 
