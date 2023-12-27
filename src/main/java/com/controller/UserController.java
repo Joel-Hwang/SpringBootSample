@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,15 +24,33 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping
+    @GetMapping()
     public List<AppUser> getAllUsers() {
         List<AppUser> res = userService.getAllUsers();
         return res;
     }
 
-    @PostMapping
+    @PostMapping()
     public AppUser createUser(@RequestBody AppUser user) throws Exception {
         AppUser res = userService.createUser(user);
+        return res;
+    }
+
+    @GetMapping("/mybatis")
+    public List<AppUser> getAllUsersMybatis() {
+        List<AppUser> res = userService.getAllUsersMybatis();
+        return res;
+    }
+
+    @GetMapping("/mybatis/{id}")
+    public AppUser getUserByIdMybatis(@PathVariable long id) {
+        AppUser res = userService.getUserByIdMybatis(id);
+        return res;
+    }
+
+    @PostMapping("/mybatis")
+    public int createUserMybatis(@RequestBody AppUser user) throws Exception {
+        int res = userService.createUserMybatis(user);
         return res;
     }
 }
