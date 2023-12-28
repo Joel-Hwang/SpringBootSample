@@ -13,6 +13,7 @@ public interface UserMapper {
     public AppUser findById(@Param("id") long id);
     
     @Insert("INSERT INTO APP_USER(username, email) VALUES(#{username}, #{email})")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     public int insert(AppUser user); 
     
 }
