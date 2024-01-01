@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class AppUser {
@@ -12,7 +14,10 @@ public class AppUser {
     private Long id;
     private String username;
     private String email;
-    
+    @ManyToOne
+    @JoinColumn(name = "departmentid")
+    private Department department;
+
     public AppUser(){
 
     }
@@ -40,7 +45,14 @@ public class AppUser {
     public void setEmail(String email) {
         this.email = email;
     }
+   
+    public Department getDepartment() {
+        return department;
+    }
 
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
     
 
 }
